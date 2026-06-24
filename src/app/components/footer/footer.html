@@ -1,0 +1,81 @@
+<footer class="footer">
+    <div class="footer-gradient" aria-hidden="true"></div>
+    <div class="container">
+        <div class="footer-main">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <div class="footer-logo">MB<span class="dot">.</span></div>
+                <p>Frontend Engineer specializing in Angular architecture, enterprise applications, and scalable UI
+                    systems.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/mukesh-balaji/" target="_blank" rel="noopener noreferrer"
+                        class="footer-social-btn" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/Mukeshbalaji13" target="_blank" rel="noopener noreferrer"
+                        class="footer-social-btn" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:mukeshbalaji0804@gmail.com" class="footer-social-btn" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    @for (link of navLinks; track link.label) {
+                    <li>
+                        <a [href]="link.href" (click)="scrollTo(link.id, $event)">{{ link.label }}</a>
+                    </li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="footer-links">
+                <h4>Expertise</h4>
+                <ul>
+                    @for (s of services; track s) {
+                    <li><span>{{ s }}</span></li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <div class="footer-contact-items">
+                    <a href="mailto:mukeshbalaji0804@gmail.com" class="footer-contact-item">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        mukeshbalaji0804&#64;gmail.com
+                    </a>
+                    <a href="tel:+919092756406" class="footer-contact-item">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        +91 9092756406
+                    </a>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        Chennai, Tamil Nadu
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">© {{ currentYear }} Mukesh Balaji. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <span class="made-with">
+                    Built with <i class="fa-solid fa-heart" aria-hidden="true" style="color:#ef4444"></i> using Angular
+                </span>
+            </div>
+
+            <!-- Back to top -->
+            <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+                <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</footer>

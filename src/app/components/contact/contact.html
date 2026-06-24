@@ -1,0 +1,170 @@
+<div class="contact-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Contact</span>
+            <h2>Let's Connect</h2>
+            <p>I'm a Frontend Engineer specializing in scalable, high-performance web applications. Open to
+                opportunities where I can build impactful digital products.</p>
+        </div>
+
+        <div class="contact-layout">
+            <!-- Left: Info -->
+            <div class="contact-info" data-aos="fade-right">
+                <div class="info-card glass-card">
+                    <h3>Get in Touch</h3>
+                    <p>Have an opportunity, a project, or just want to connect? I'd love to hear from you.</p>
+
+                    <div class="contact-items">
+                        @for (item of contactItems; track item.label) {
+                        <a [href]="item.href" [target]="item.external ? '_blank' : '_self'"
+                            [rel]="item.external ? 'noopener noreferrer' : ''" class="contact-item">
+                            <div class="contact-item-icon" [style.background]="item.bg" [style.color]="item.color">
+                                <i [class]="item.icon" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <div class="contact-item-label">{{ item.label }}</div>
+                                <div class="contact-item-value">{{ item.value }}</div>
+                            </div>
+                        </a>
+                        }
+                    </div>
+
+                    <div class="social-links">
+                        <span class="social-label">Find me on</span>
+                        <div class="social-row">
+                            <a href="https://www.linkedin.com/in/mukesh-balaji/" target="_blank"
+                                rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com/Mukeshbalaji13" target="_blank" rel="noopener noreferrer"
+                                class="social-btn" aria-label="GitHub">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            </a>
+                            <a href="mailto:mukeshbalaji0804@gmail.com" class="social-btn" aria-label="Email">
+                                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Availability card -->
+                <div class="availability-card glass-card" data-aos="fade-right" data-aos-delay="100">
+                    <div class="avail-dot"></div>
+                    <div>
+                        <div class="avail-title">Open to Work</div>
+                        <div class="avail-desc">Available for full-time roles and freelance projects</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="contact-form-wrap" data-aos="fade-left">
+                <div class="form-card glass-card">
+                    <h3>Send a Message</h3>
+                    <p>Drop a message — I respond within 24 hours.</p>
+
+                    <!-- Success State -->
+                    @if (formState() === 'success') {
+                    <div class="form-success" role="alert">
+                        <div class="success-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+                        <h4>Message Sent!</h4>
+                        <p>Thanks for reaching out. I'll get back to you soon.</p>
+                        <button class="btn btn-secondary" (click)="resetForm()">Send Another</button>
+                    </div>
+                    }
+
+                    @if (formState() !== 'success') {
+                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+                        <div class="form-row">
+                            <div class="form-group" [class.error]="shouldShowError('name')">
+                                <label for="name">Name <span aria-hidden="true">*</span></label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                                    <input id="name" type="text" formControlName="name" placeholder="John Doe"
+                                        autocomplete="name" [attr.aria-invalid]="shouldShowError('name')"
+                                        aria-describedby="name-error" />
+                                </div>
+                                @if (shouldShowError('name')) {
+                                <span class="error-msg" id="name-error" role="alert">
+                                    {{ getError('name') }}
+                                </span>
+                                }
+                            </div>
+
+                            <div class="form-group" [class.error]="shouldShowError('email')">
+                                <label for="email">Email <span aria-hidden="true">*</span></label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                                    <input id="email" type="email" formControlName="email"
+                                        placeholder="john@example.com" autocomplete="email"
+                                        [attr.aria-invalid]="shouldShowError('email')" aria-describedby="email-error" />
+                                </div>
+                                @if (shouldShowError('email')) {
+                                <span class="error-msg" id="email-error" role="alert">
+                                    {{ getError('email') }}
+                                </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group" [class.error]="shouldShowError('subject')">
+                            <label for="subject">Subject <span aria-hidden="true">*</span></label>
+                            <div class="input-wrap">
+                                <i class="fa-solid fa-tag" aria-hidden="true"></i>
+                                <input id="subject" type="text" formControlName="subject"
+                                    placeholder="Job Opportunity / Project Collaboration"
+                                    [attr.aria-invalid]="shouldShowError('subject')" aria-describedby="subject-error" />
+                            </div>
+                            @if (shouldShowError('subject')) {
+                            <span class="error-msg" id="subject-error" role="alert">
+                                {{ getError('subject') }}
+                            </span>
+                            }
+                        </div>
+
+                        <div class="form-group" [class.error]="shouldShowError('message')">
+                            <div class="label-with-counter">
+                                <label for="message">
+                                    Message <span aria-hidden="true">*</span>
+                                </label>
+                                <span class="char-count">{{ messageLength() }}/500</span>
+                            </div>
+                            <div class="input-wrap textarea-wrap">
+                                <textarea id="message" formControlName="message" rows="5"
+                                    placeholder="Tell me about your project or opportunity..." maxlength="500"
+                                    [attr.aria-invalid]="shouldShowError('message')" aria-describedby="message-error"
+                                    (input)="updateCharCount()"></textarea>
+                            </div>
+                            @if (shouldShowError('message')) {
+                            <span class="error-msg" id="message-error" role="alert">
+                                {{ getError('message') }}
+                            </span>
+                            }
+                        </div>
+
+                        <!-- Error banner -->
+                        @if (formState() === 'error') {
+                        <div class="form-error-banner" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                            Something went wrong. Please try emailing directly at <a
+                                href="mailto:mukeshbalaji0804@gmail.com">mukeshbalaji0804&#64;gmail.com</a>
+                        </div>
+                        }
+
+                        <button type="submit" class="btn btn-primary submit-btn" [disabled]="formState() === 'loading'"
+                            [attr.aria-busy]="formState() === 'loading'">
+                            @if (formState() === 'loading') {
+                            <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i>
+                            Sending...
+                            } @else {
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            Send Message
+                            }
+                        </button>
+                    </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

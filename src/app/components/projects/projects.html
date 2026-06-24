@@ -1,0 +1,128 @@
+<div class="projects-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Projects</span>
+            <h2>Featured Projects</h2>
+            <p>Enterprise-grade projects focused on scalable frontend systems, reusable components, and high-performance
+                web applications.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100" role="tablist" aria-label="Project filter">
+            @for (filter of filters; track filter.value) {
+            <button class="filter-tab" [class.active]="activeFilter() === filter.value"
+                (click)="setFilter(filter.value)" role="tab" [attr.aria-selected]="activeFilter() === filter.value">
+                {{ filter.label }}
+                @if (filter.count) {
+                <span class="filter-count">{{ filter.count }}</span>
+                }
+            </button>
+            }
+        </div>
+
+        <!-- Project Grid -->
+        <div class="projects-grid">
+            @for (project of filteredProjects(); track project.name; let i = $index) {
+            <article class="project-card glass-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100"
+                role="article">
+                <!-- Card Visual -->
+                <div class="project-visual" [style.background]="project.gradient" aria-hidden="true">
+                    <div class="project-visual-pattern"></div>
+                    <div class="project-status-badge">
+                        <i class="fa-solid fa-shield" aria-hidden="true"></i>
+                        {{ project.status }}
+                    </div>
+                    <div class="project-industry-badge">
+                        <i [class]="project.industryIcon" aria-hidden="true"></i>
+                        {{ project.industry }}
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="project-body">
+                    <h3>{{ project.name }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+
+                    <!-- Technologies -->
+                    <div class="project-tech">
+                        @for (tech of project.technologies; track tech) {
+                        <span class="tag">{{ tech }}</span>
+                        }
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="project-actions">
+                        <button class="btn btn-secondary view-details-btn" (click)="openModal(project)"
+                            aria-haspopup="dialog">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            View Details
+                        </button>
+                        <span class="no-demo-note">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Enterprise · Confidential
+                        </span>
+                    </div>
+                </div>
+            </article>
+            }
+        </div>
+
+        <!-- Modal -->
+        @if (activeProject()) {
+        <div class="project-modal-overlay" (click)="closeModal()" role="dialog" aria-modal="true"
+            [attr.aria-label]="activeProject()!.name + ' details'">
+            <div class="project-modal glass-card" (click)="$event.stopPropagation()">
+                <button class="modal-close" (click)="closeModal()" aria-label="Close dialog">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+
+                <div class="modal-visual" [style.background]="activeProject()!.gradient" aria-hidden="true">
+                    <div class="project-visual-pattern"></div>
+                    <div class="modal-industry">
+                        <i [class]="activeProject()!.industryIcon" aria-hidden="true"></i>
+                        {{ activeProject()!.industry }}
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <span class="status-badge-modal">{{ activeProject()!.status }}</span>
+                    <h3>{{ activeProject()!.name }}</h3>
+                    <p class="modal-description">{{ activeProject()!.description }}</p>
+
+                    <div class="modal-challenge">
+                        <h4><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Challenge</h4>
+                        <p>{{ activeProject()!.problem }}</p>
+                    </div>
+
+                    <div class="modal-contributions">
+                        <h4><i class="fa-solid fa-code-branch" aria-hidden="true"></i> Contributions</h4>
+                        <ul>
+                            @for (c of activeProject()!.contributions; track c) {
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> {{ c }}</li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="modal-impact">
+                        <h4><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Business Impact</h4>
+                        <div class="impact-row">
+                            @for (imp of activeProject()!.impact; track imp) {
+                            <div class="impact-chip">{{ imp }}</div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="modal-tech">
+                        <h4><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Technologies</h4>
+                        <div class="project-tech">
+                            @for (t of activeProject()!.technologies; track t) {
+                            <span class="tag">{{ t }}</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

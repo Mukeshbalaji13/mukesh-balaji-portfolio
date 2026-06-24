@@ -1,0 +1,93 @@
+<div class="skills-section">
+    <!-- Background decoration -->
+    <div class="section-bg" aria-hidden="true">
+        <div class="bg-gradient"></div>
+    </div>
+
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Skills</span>
+            <h2>Skills & Technologies</h2>
+            <p>Technologies and tools I use to build scalable frontend systems, reusable components, and
+                high-performance web applications.</p>
+        </div>
+
+        <!-- Skill Categories -->
+        <!-- <div class="skills-grid">
+            @for (category of skillCategories; track category.label; let i = $index) {
+            <div class="skill-category glass-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i [class]="category.icon" aria-hidden="true"></i>
+                    </div>
+                    <h3>{{ category.label }}</h3>
+                </div>
+
+                <div class="skills-tags">
+                    @for (skill of category.skills; track skill.name) {
+                    <div class="skill-tag">
+                        @if (skill.icon) {
+                        <img [src]="skill.icon" [alt]="skill.name" class="skill-icon">
+                        }
+                        <span>{{ skill.name }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div> -->
+
+        <!-- Skill stepper -->
+        <div class="skills-stepper">
+            @for (category of skillCategories; track category.label; let i = $index) {
+            <div class="step-row">
+
+                <div class="step-left">
+                    <div class="step-marker">
+                        <div class="step-icon">
+                            <i [class]="category.icon"></i>
+                            @if (i !== skillCategories.length - 1) {
+                            <div class="step-line"></div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="category-info">
+                        <h3>{{ category.label }}</h3>
+                    </div>
+                </div>
+
+                <div class="step-right glass-card">
+                    <div class="skills-tags">
+                        @for (skill of category.skills; track skill.name) {
+                        <div class="skill-tag">
+                            @if (skill.icon) {
+                            <img [src]="skill.icon" [alt]="skill.name" class="skill-icon">
+                            }
+                            <span>{{ skill.name }}</span>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            }
+        </div>
+
+        <!-- Technology Marquee -->
+        <div class="marquee-wrap" data-aos="fade-up" data-aos-delay="200" aria-label="Technologies used">
+            <div class="marquee-label">Technologies I work with</div>
+            <div class="marquee-track" aria-hidden="true">
+                <div class="marquee-inner">
+                    @for (tech of marqueeTechs; track tech) {
+                    <span class="marquee-item">{{ tech }}</span>
+                    }
+                    <!-- Duplicate for seamless loop -->
+                    @for (tech of marqueeTechs; track tech + '_dup') {
+                    <span class="marquee-item">{{ tech }}</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

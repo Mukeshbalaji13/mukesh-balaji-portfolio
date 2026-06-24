@@ -1,0 +1,95 @@
+<div class="experience-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Experience</span>
+            <h2>Career Journey</h2>
+            <p>A timeline of my professional experience building enterprise-grade frontend systems and scalable web
+                applications.</p>
+        </div>
+
+        <div class="exp-layout">
+            <!-- Timeline -->
+            <div class="exp-timeline">
+                @for (exp of experiences; track exp.company; let i = $index) {
+                <div class="exp-entry" [attr.data-aos]="'fade-right'" [attr.data-aos-delay]="i * 120"
+                    [class.active]="selectedExp === i" (click)="selectedExp = i" role="button" tabindex="0"
+                    [attr.aria-label]="exp.role + ' at ' + exp.company" (keydown.enter)="selectedExp = i">
+                    <div class="exp-timeline-dot" [class.current]="exp.current"></div>
+                    <div class="exp-entry-content">
+                        <div class="exp-period">
+                            <span>{{ exp.period }}</span>
+                            @if (exp.current) {
+                            <span class="current-dot"></span>
+                            }
+                        </div>
+                        <div class="exp-role">{{ exp.role }}</div>
+                        <div class="exp-company">{{ exp.company }}</div>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <!-- Detail Panel -->
+            <div class="exp-detail glass-card" data-aos="fade-left" data-aos-delay="200">
+                @let exp = experiences[selectedExp];
+                <div class="exp-detail-header">
+                    <div class="exp-company-logo">
+                        <i [class]="exp.logoIcon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h3>{{ exp.role }}</h3>
+                        <p class="exp-company-name">
+                            <i class="fa-solid fa-building" aria-hidden="true"></i>
+                            {{ exp.company }}
+                        </p>
+                        <p class="exp-location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            {{ exp.location }}
+                            <span class="exp-type-badge">{{ exp.type }}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <p class="exp-summary">{{ exp.summary }}</p>
+
+                <!-- Achievement Banner -->
+                <div class="achievement-banner">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+
+                    <div class="achievement-content">
+                        <span class="achievement-label">Performance Recognition</span>
+                        <h4>2× Merit-Based Salary Increments</h4>
+                        <p>
+                            Recognized for exceptional performance, technical ownership,
+                            and consistent delivery of high-impact engineering solutions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-highlights">
+                    <h4>Key Highlights</h4>
+                    <ul>
+                        @for (h of exp.highlights; track h) {
+                        <li>
+                            <span class="highlight-icon"><i class="fa-solid fa-arrow-right"
+                                    aria-hidden="true"></i></span>
+                            {{ h }}
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="exp-tech">
+                    <h4>Technologies</h4>
+                    <div class="tech-tags">
+                        @for (t of exp.technologies; track t) {
+                        <span class="tag">{{ t }}</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

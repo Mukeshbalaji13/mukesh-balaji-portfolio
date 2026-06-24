@@ -1,0 +1,144 @@
+<div class="hero">
+    <!-- Background -->
+    <div class="hero-bg" aria-hidden="true">
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+        <div class="hero-orb orb-3"></div>
+        <div class="hero-grid"></div>
+    </div>
+
+    <div class="container hero-container">
+        <!-- Left Content -->
+        <div class="hero-content">
+            <!-- Status Badge -->
+            <div class="status-badge" data-aos="fade-down" data-aos-delay="100">
+                <span class="status-dot"></span>
+                <span>Available for new opportunities</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+                <span class="title-line">Building</span>
+                <div class="title-line role-container">
+                    <span class="gradient-text role-text" [class.animate]="isAnimating">
+                        {{ currentRole() }}
+                    </span>
+                </div>
+                <span class="title-line">for the web.</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+                Software Engineer specializing in Angular and modern frontend technologies.
+                I build scalable UI systems, custom component libraries, and
+                high-performance web applications.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                <a href="mailto:mukeshbalaji0804@gmail.com" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    Say Hello
+                </a>
+
+                <a href="https://www.linkedin.com/in/mukesh-balaji/" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-icon" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://github.com/Mukeshbalaji13" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-icon" aria-label="GitHub">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <!-- Floating Tech Badges -->
+            <div class="tech-badges" data-aos="fade-up" data-aos-delay="500">
+                @for (tech of techBadges; track tech.name) {
+                <div class="tech-badge animate-float" [style.animation-delay]="tech.delay">
+                    <span class="dot"></span>
+                    {{ tech.name }}
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Right — Profile Card -->
+        <div class="hero-visual" data-aos="fade-left" data-aos-delay="300">
+            <div class="profile-card glass-card">
+                <!-- Card Header -->
+                <div class="card-header">
+                    <div class="card-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="card-title">mukesh-balaji.dev</span>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="profile-image-wrap">
+                    <div class="profile-ring"></div>
+                    <div class="profile-image">
+                        <img src="assets/images/person.jpeg" alt="Mukesh Balaji — Frontend Engineer" loading="eager"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <!-- Fallback initials -->
+                        <div class="profile-initials" style="display:none;">
+                            <span>MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="profile-info">
+                    <h3>Mukesh Balaji</h3>
+                    <p>Frontend Engineer · Angular Architect</p>
+
+                    <!-- Metrics -->
+                    <div class="metrics-grid">
+                        @for (metric of metrics; track metric.label; let last = $last) {
+                        <div class="metric" [class.metric-featured]="last">
+                            <span class="metric-value gradient-text">{{ metric.value }}</span>
+                            <span class="metric-label">{{ metric.label }}</span>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Code snippet decoration -->
+                <div class="code-snippet">
+                    <div class="code-line">
+                        <span class="code-keyword">const</span>
+                        <span class="code-var"> engineer</span>
+                        <span class="code-op"> = </span>
+                        <span class="code-str">"Mukesh"</span>
+                        <span class="code-op">;</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-keyword">const</span>
+                        <span class="code-var"> stack</span>
+                        <span class="code-op"> = [</span>
+                        <span class="code-str">"Angular"</span>
+                        <span class="code-op">,</span>
+                        <span class="code-str">"React"</span>
+                        <span class="code-op">];</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-fn">build</span>
+                        <span class="code-op">(</span>
+                        <span class="code-var">scalable</span>
+                        <span class="code-op">.</span>
+                        <span class="code-fn">apps</span>
+                        <span class="code-op">());</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#about" class="scroll-indicator" (click)="scrollToAbout($event)" aria-label="Scroll to About section">
+        <span>Scroll</span>
+        <div class="scroll-arrow">
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </div>
+    </a>
+</div>

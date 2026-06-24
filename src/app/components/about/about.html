@@ -1,0 +1,61 @@
+<div class="about-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">About</span>
+            <h2>Software Engineer · Frontend Developer</h2>
+            <p>Passionate about building scalable, high-performance web applications and elegant UI systems.</p>
+        </div>
+
+        <div class="about-grid">
+            <!-- Left: Story -->
+            <div class="about-content" data-aos="fade-right">
+                <div class="about-text">
+                    <p>
+                        I'm a Software Engineer with <strong>1.5+ years of experience</strong> specializing in Angular and
+                        modern frontend technologies.
+                        I focus on building scalable, high-performance web applications and designing reusable UI
+                        systems that improve development efficiency and consistency across projects.
+                    </p>
+                    <p>
+                        I have architected and developed a <strong>custom UI component library</strong> with 80+
+                        reusable components and a charting library built from scratch using HTML Canvas,
+                        enabling advanced and flexible data visualizations.
+                    </p>
+                    <p>
+                        I also engineered an <strong>LLM-powered system</strong> using the ChatGPT API to generate chart
+                        configurations from images, significantly reducing development effort.
+                    </p>
+                    <p>
+                        Currently, I contribute to a <strong>US Government workforce platform</strong>, developing
+                        scalable Angular modules, integrating REST APIs, and delivering responsive, user-centric
+                        interfaces.
+                    </p>
+                </div>
+
+                <div class="about-cta">
+                    <a href="assets/resume/Mukesh_Balaji_Software_Engineer_Resume.pdf" download class="btn btn-primary">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                        Download Resume
+                    </a>
+                    <a href="mailto:mukeshbalaji0804@gmail.com" class="btn btn-secondary">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Timeline -->
+            <div class="achievements">
+                @for (ach of achievements; track ach.label) {
+                <div class="achievement-card glass-card">
+                    <div class="ach-icon">
+                        <i [class]="ach.icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="ach-value gradient-text">{{ ach.value }}</div>
+                    <div class="ach-label">{{ ach.label }}</div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

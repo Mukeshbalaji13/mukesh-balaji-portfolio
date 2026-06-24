@@ -1,0 +1,60 @@
+<div class="services-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-label">Services</span>
+            <h2>What I Do</h2>
+            <p>I specialize in building scalable frontend applications, reusable UI components, and high-performance web
+                solutions using modern technologies.</p>
+        </div>
+
+        <!-- Service Cards -->
+        <div class="services-grid">
+            @for (service of services; track service.title; let i = $index) {
+            <div class="service-card glass-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
+                <div class="service-icon" [style.background]="service.iconBg">
+                    <i [class]="service.icon" aria-hidden="true" [style.color]="service.iconColor"></i>
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <ul class="service-features">
+                    @for (feat of service.features; track feat) {
+                    <li>
+                        <i class="fa-solid fa-check" aria-hidden="true"></i>
+                        {{ feat }}
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
+
+        <!-- Process Flow -->
+        <div class="process-section" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="process-title">My Process</h3>
+            <div class="process-flow">
+                @for (step of processSteps; track step.label; let i = $index; let last = $last) {
+                <div class="process-step">
+                    <div class="step-number">{{ ('0' + (i + 1)).slice(-2) }}</div>
+                    <div class="step-icon"><i [class]="step.icon" aria-hidden="true"></i></div>
+                    <div class="step-label">{{ step.label }}</div>
+                    <div class="step-desc">{{ step.desc }}</div>
+                </div>
+                @if (!last) {
+                <div class="process-arrow" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                }
+                }
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="services-cta" data-aos="fade-up">
+            <p>Have a project in mind? Let's build something great together.</p>
+            <a href="mailto:mukeshbalaji0804@gmail.com" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                Say Hello
+            </a>
+        </div>
+    </div>
+</div>

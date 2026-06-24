@@ -1,0 +1,88 @@
+<header class="header" [class.scrolled]="isScrolled()">
+    <div class="container header-inner">
+        <!-- Logo -->
+        <a href="#home" class="logo" (click)="scrollTo('home', $event)">
+            <span class="logo-mark">MB</span>
+            <span class="logo-dot">.</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav-desktop" aria-label="Primary navigation">
+            <ul>
+                @for (item of navItems; track item.id) {
+                <li>
+                    <a [href]="item.href" class="nav-link" [class.active]="activeSection() === item.id"
+                        (click)="scrollTo(item.id, $event)"
+                        [attr.aria-current]="activeSection() === item.id ? 'page' : null">
+                        {{ item.label }}
+                        @if (activeSection() === item.id) {
+                        <span class="nav-indicator"></span>
+                        }
+                    </a>
+                </li>
+                }
+            </ul>
+        </nav>
+
+        <!-- Actions -->
+        <div class="header-actions">
+            <!-- Theme Toggle -->
+            <button class="btn-icon theme-toggle" (click)="themeToggle.emit()"
+                [attr.aria-label]="currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+                title="Toggle theme">
+                @if (currentTheme === 'dark') {
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                } @else {
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                }
+            </button>
+
+            <!-- Resume -->
+            <a href="assets/resume/Mukesh_Balaji_Software_Engineer_Resume.pdf" download
+                class="btn btn-secondary resume-btn" aria-label="Download Resume">
+                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                <span>Resume</span>
+            </a>
+
+            <!-- Hamburger (Mobile) -->
+            <button class="hamburger" [class.open]="mobileMenuOpen()" (click)="toggleMobileMenu()"
+                aria-label="Toggle mobile menu" [attr.aria-expanded]="mobileMenuOpen()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" [class.open]="mobileMenuOpen()" role="dialog" aria-label="Mobile navigation">
+        <button title="Close Dialog" class="close-btn-icon" (click)="closeMobileMenu()">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <nav>
+            <ul>
+                @for (item of navItems; track item.id) {
+                <li>
+                    <a [href]="item.href" class="mobile-nav-link" [class.active]="activeSection() === item.id"
+                        (click)="scrollTo(item.id, $event); closeMobileMenu()">
+                        <span class="mobile-nav-index">{{ ('0' + ($index + 1)).slice(-2) }}</span>
+                        {{ item.label }}
+                    </a>
+                </li>
+                }
+            </ul>
+
+            <div class="mobile-menu-footer">
+                <a href="assets/resume/Mukesh_Balaji_Software_Engineer_Resume.pdf" download class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">
+                    <i class="fa-solid fa-download"></i> Download Resume
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Mobile Overlay -->
+    @if (mobileMenuOpen()) {
+    <div class="mobile-overlay" (click)="closeMobileMenu()" aria-hidden="true"></div>
+    }
+</header>
