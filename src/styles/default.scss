@@ -555,13 +555,13 @@
 .profile-ring {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
+    border-radius: 48%;
     background: conic-gradient(var(--color-primary),
             var(--color-secondary),
             var(--color-accent),
             var(--color-primary));
     animation: spin-slow 2s linear infinite;
-    opacity: 0.4;
+    opacity: 0.8;
 }
 
 .profile-image {

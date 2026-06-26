@@ -6,7 +6,7 @@ export type Theme = 'light' | 'dark';
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private platformId = inject(PLATFORM_ID);
-  theme = signal<Theme>('dark');
+  theme = signal<Theme>('light');
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {

@@ -15,7 +15,7 @@ interface NavItem {
   templateUrl: './header.html',
 })
 export class HeaderComponent implements OnInit {
-  @Input() currentTheme: string = 'dark';
+  @Input() currentTheme: string = 'light';
   @Output() themeToggle = new EventEmitter<void>();
 
   private platformId = inject(PLATFORM_ID);
